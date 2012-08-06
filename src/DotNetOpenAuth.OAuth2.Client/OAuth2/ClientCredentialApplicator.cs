@@ -116,8 +116,8 @@ namespace DotNetOpenAuth.OAuth2 {
 			/// <param name="request">The outbound message to apply authentication information to.</param>
 			public override void ApplyClientCredential(string clientIdentifier, AuthenticatedClientRequestBase request) {
 				// When using network credentials, the client authentication is not done as standard message parts.
-				request.ClientIdentifier = null;
-				request.ClientSecret = null;
+				request.ClientIdentifier = clientIdentifier;
+				request.ClientSecret = this.clientSecret;
 			}
 
 			/// <summary>

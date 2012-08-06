@@ -23,12 +23,12 @@
 		<ClrVersion Condition=" '$(ClrVersion)' == '' ">2</ClrVersion>
 		<BuildCodeContractsReferenceAssemblies>false</BuildCodeContractsReferenceAssemblies>
 
-		<SignAssembly>true</SignAssembly>
+		<SignAssembly>false</SignAssembly>
 		<PublicKeyFile Condition="'$(PublicKeyFile)' == ''">$(ProjectRoot)src\official-build-key.pub</PublicKeyFile>
 		<AssemblyOriginatorKeyFile Condition="'$(AssemblyOriginatorKeyFile)' == ''">$(PublicKeyFile)</AssemblyOriginatorKeyFile>
 		<KeyPairContainer Condition="'$(KeyPairContainer)' == ''">DotNetOpenAuth</KeyPairContainer>
 		<PublicKeyToken>2780CCD10D57B246</PublicKeyToken>
-		<DelaySign>true</DelaySign>
+		<DelaySign>false</DelaySign>
 		<SignedSubPath>signed\</SignedSubPath>
 
 		<ILMergeOutputAssemblyDirectory>$(OutputPath)unified\</ILMergeOutputAssemblyDirectory>
