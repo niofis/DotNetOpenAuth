@@ -39,6 +39,9 @@
 
 			this.InitializeGoogleConsumer();
 			this.InitializeWcfConsumer();
+
+			System.Net.ServicePointManager.ServerCertificateValidationCallback =
+	((sender, certificate, chain, sslPolicyErrors) => true);
 		}
 
 		private void InitializeGoogleConsumer() {
