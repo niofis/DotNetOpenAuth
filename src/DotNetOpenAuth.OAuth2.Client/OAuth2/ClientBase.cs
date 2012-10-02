@@ -59,6 +59,15 @@ namespace DotNetOpenAuth.OAuth2 {
 		}
 
 		/// <summary>
+		/// Gets or sets the secret used by this client with to the Authorization Server.
+		/// </summary>
+		public string ClientSecret
+		{
+			get { return this.OAuthChannel.ClientSecret; }
+			set { this.OAuthChannel.ClientSecret = value; }
+		}
+
+		/// <summary>
 		/// Gets or sets the tool to use to apply client credentials to authenticated requests to the Authorization Server.
 		/// </summary>
 		/// <value>May be <c>null</c> if this client has no client secret.</value>
@@ -163,7 +172,7 @@ namespace DotNetOpenAuth.OAuth2 {
 
 			var request = new AccessTokenRefreshRequestC(this.AuthorizationServer) {
 				ClientIdentifier = this.ClientIdentifier,
-				RefreshToken = refreshToken,
+				RefreshToken = refreshToken
 			};
 
 			this.ApplyClientCredential(request);
@@ -271,6 +280,7 @@ namespace DotNetOpenAuth.OAuth2 {
 				ClientIdentifier = this.ClientIdentifier,
 				Callback = authorizationState.Callback,
 				AuthorizationCode = authorizationSuccess.AuthorizationCode,
+				ClientSecret = this.ClientSecret
 			};
 			this.ApplyClientCredential(accessTokenRequest);
 			IProtocolMessage accessTokenResponse = this.Channel.Request(accessTokenRequest);

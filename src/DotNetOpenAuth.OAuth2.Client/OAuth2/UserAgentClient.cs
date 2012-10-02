@@ -28,6 +28,9 @@ namespace DotNetOpenAuth.OAuth2 {
 		/// <param name="clientSecret">The client secret.</param>
 		public UserAgentClient(AuthorizationServerDescription authorizationServer, string clientIdentifier = null, string clientSecret = null)
 			: this(authorizationServer, clientIdentifier, DefaultSecretApplicator(clientSecret)) {
+				// The client secret must be stored for requesting authorization token
+				// NOTE: Not sure if this is the preferred way to store it.
+				this.ClientSecret = clientSecret;
 		}
 
 		/// <summary>

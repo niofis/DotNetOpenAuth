@@ -57,6 +57,30 @@ namespace DotNetOpenAuth.OAuth2.Messages {
 		internal Uri Callback { get; set; }
 
 		/// <summary>
+		/// Gets or sets the client identifier of the requesting application.
+		/// </summary>
+		/// <value>
+		/// The Client Identifier
+		/// </value>
+		/// <remarks>
+		/// REQUIRED, for the authorization request.
+		/// </remarks>
+		[MessagePart(Protocol.client_id, IsRequired = true)]
+		internal string ClientIdentifier { get; set; }
+
+		/// <summary>
+		/// Gets or sets the client secret of the requesting application.
+		/// </summary>
+		/// <value>
+		/// The Client Secret
+		/// </value>
+		/// <remarks>
+		/// REQUIRED, for the authorization request.
+		/// </remarks>
+		[MessagePart(Protocol.client_secret, IsRequired = true)]
+		internal string ClientSecret { get; set; }
+
+		/// <summary>
 		/// Gets the scope of operations the client is allowed to invoke.
 		/// </summary>
 		protected override HashSet<string> RequestedScope {

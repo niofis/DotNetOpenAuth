@@ -20,6 +20,11 @@ namespace DotNetOpenAuth.OAuth2.ChannelElements {
 		string ClientIdentifier { get; set; }
 
 		/// <summary>
+		/// Gets or sets the secret used by this client with to the Authorization Server.
+		/// </summary>
+		string ClientSecret { get; set; }
+
+		/// <summary>
 		/// Gets or sets the client credentials applicator extension to use.
 		/// </summary>
 		ClientCredentialApplicator ClientCredentialApplicator { get; set; }
