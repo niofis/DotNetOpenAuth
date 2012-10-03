@@ -17,7 +17,7 @@ namespace DotNetOpenAuth {
 	/// <summary>
 	/// Argument validation checks that throw some kind of ArgumentException when they fail (unless otherwise noted).
 	/// </summary>
-	internal static class Requires {
+	public static class Requires {
 		/// <summary>
 		/// Validates that a given parameter is not null.
 		/// </summary>
@@ -29,7 +29,7 @@ namespace DotNetOpenAuth {
 		[ContractArgumentValidator]
 #endif
 		[Pure, DebuggerStepThrough]
-		internal static T NotNull<T>(T value, string parameterName) where T : class {
+		public static T NotNull<T>(T value, string parameterName) where T : class {
 			if (value == null) {
 				throw new ArgumentNullException(parameterName);
 			}
@@ -48,7 +48,7 @@ namespace DotNetOpenAuth {
 		[ContractArgumentValidator]
 #endif
 		[Pure, DebuggerStepThrough]
-		internal static string NotNullOrEmpty(string value, string parameterName) {
+		public static string NotNullOrEmpty(string value, string parameterName) {
 			NotNull(value, parameterName);
 			True(value.Length > 0, parameterName, Strings.EmptyStringNotAllowed);
 			Contract.Ensures(Contract.Result<string>() == value);
@@ -66,7 +66,7 @@ namespace DotNetOpenAuth {
 		[ContractArgumentValidator]
 #endif
 		[Pure, DebuggerStepThrough]
-		internal static void NotNullOrEmpty<T>(IEnumerable<T> value, string parameterName) {
+		public static void NotNullOrEmpty<T>(IEnumerable<T> value, string parameterName) {
 			NotNull(value, parameterName);
 			True(value.Any(), parameterName, Strings.InvalidArgument);
 			Contract.EndContractBlock();
@@ -82,7 +82,7 @@ namespace DotNetOpenAuth {
 		[ContractArgumentValidator]
 #endif
 		[Pure, DebuggerStepThrough]
-		internal static void NullOrWithNoNullElements<T>(IEnumerable<T> sequence, string parameterName) where T : class {
+		public static void NullOrWithNoNullElements<T>(IEnumerable<T> sequence, string parameterName) where T : class {
 			if (sequence != null) {
 				if (sequence.Any(e => e == null)) {
 					throw new ArgumentException(MessagingStrings.SequenceContainsNullElement, parameterName);
@@ -100,7 +100,7 @@ namespace DotNetOpenAuth {
 		[ContractArgumentValidator]
 #endif
 		[Pure, DebuggerStepThrough]
-		internal static void InRange(bool condition, string parameterName, string message = null) {
+		public static void InRange(bool condition, string parameterName, string message = null) {
 			if (!condition) {
 				throw new ArgumentOutOfRangeException(parameterName, message);
 			}
@@ -118,7 +118,7 @@ namespace DotNetOpenAuth {
 		[ContractArgumentValidator]
 #endif
 		[Pure, DebuggerStepThrough]
-		internal static void True(bool condition, string parameterName = null, string message = null) {
+		public static void True(bool condition, string parameterName = null, string message = null) {
 			if (!condition) {
 				throw new ArgumentException(message ?? Strings.InvalidArgument, parameterName);
 			}
@@ -137,7 +137,7 @@ namespace DotNetOpenAuth {
 		[ContractArgumentValidator]
 #endif
 		[Pure, DebuggerStepThrough]
-		internal static void True(bool condition, string parameterName, string unformattedMessage, params object[] args) {
+		public static void True(bool condition, string parameterName, string unformattedMessage, params object[] args) {
 			if (!condition) {
 				throw new ArgumentException(string.Format(CultureInfo.CurrentCulture, unformattedMessage, args), parameterName);
 			}
@@ -153,7 +153,7 @@ namespace DotNetOpenAuth {
 		[ContractArgumentValidator]
 #endif
 		[Pure, DebuggerStepThrough]
-		internal static void ValidState(bool condition) {
+		public static void ValidState(bool condition) {
 			if (!condition) {
 				throw new InvalidOperationException();
 			}
@@ -170,7 +170,7 @@ namespace DotNetOpenAuth {
 		[ContractArgumentValidator]
 #endif
 		[Pure, DebuggerStepThrough]
-		internal static void ValidState(bool condition, string message) {
+		public static void ValidState(bool condition, string message) {
 			if (!condition) {
 				throw new InvalidOperationException(message);
 			}
@@ -188,7 +188,7 @@ namespace DotNetOpenAuth {
 		[ContractArgumentValidator]
 #endif
 		[Pure, DebuggerStepThrough]
-		internal static void ValidState(bool condition, string unformattedMessage, params object[] args) {
+		public static void ValidState(bool condition, string unformattedMessage, params object[] args) {
 			if (!condition) {
 				throw new InvalidOperationException(string.Format(CultureInfo.CurrentCulture, unformattedMessage, args));
 			}
@@ -206,7 +206,7 @@ namespace DotNetOpenAuth {
 		[ContractArgumentValidator]
 #endif
 		[Pure, DebuggerStepThrough]
-		internal static void NotNullSubtype<T>(Type type, string parameterName) {
+		public static void NotNullSubtype<T>(Type type, string parameterName) {
 			NotNull(type, parameterName);
 			True(typeof(T).IsAssignableFrom(type), parameterName, MessagingStrings.UnexpectedType, typeof(T).FullName, type.FullName);
 
@@ -222,7 +222,7 @@ namespace DotNetOpenAuth {
 		[ContractArgumentValidator]
 #endif
 		[Pure, DebuggerStepThrough]
-		internal static void Format(bool condition, string message) {
+		public static void Format(bool condition, string message) {
 			if (!condition) {
 				throw new FormatException(message);
 			}
@@ -236,7 +236,7 @@ namespace DotNetOpenAuth {
 		/// <param name="condition">The expression that must evaluate to true to avoid an <see cref="NotSupportedException"/>.</param>
 		/// <param name="message">The message.</param>
 		[Pure, DebuggerStepThrough]
-		internal static void Support(bool condition, string message) {
+		public static void Support(bool condition, string message) {
 			if (!condition) {
 				throw new NotSupportedException(message);
 			}
@@ -248,7 +248,7 @@ namespace DotNetOpenAuth {
 		/// <param name="parameterName">Name of the parameter.</param>
 		/// <param name="message">The message.</param>
 		[Pure, DebuggerStepThrough]
-		internal static void Fail(string parameterName, string message) {
+		public static void Fail(string parameterName, string message) {
 			throw new ArgumentException(message, parameterName);
 		}
 	}
