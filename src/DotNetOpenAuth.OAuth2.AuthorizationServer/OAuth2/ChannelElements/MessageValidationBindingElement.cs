@@ -94,6 +94,16 @@ namespace DotNetOpenAuth.OAuth2.ChannelElements {
 			// Check that the client secret is correct for client authenticated messages.
 			var clientCredentialOnly = message as AccessTokenClientCredentialsRequest;
 			var authenticatedClientRequest = message as AuthenticatedClientRequestBase;
+
+			//// HACK by Mike
+			//// Esos valores no se pasan en la herencia hacia la base debido a que no se usa un override
+			if (authenticatedClientRequest != null && message is AccessTokenAuthorizationCodeRequestAS)
+			{
+				var messageNew = (AccessTokenAuthorizationCodeRequestAS)message;
+				authenticatedClientRequest.ClientIdentifier = messageNew.ClientIdentifier;
+				authenticatedClientRequest.ClientSecret = messageNew.ClientSecret;
+			}
+
 			var accessTokenRequest = authenticatedClientRequest as AccessTokenRequestBase; // currently the only type of message.
 			var resourceOwnerPasswordCarrier = message as AccessTokenResourceOwnerPasswordCredentialsRequest;
 			if (authenticatedClientRequest != null) {

@@ -110,8 +110,9 @@ namespace DotNetOpenAuth.OAuth2.ChannelElements {
 				return null;
 			}
 
+			// HACK by Mike
 			using (var hasher = new SHA256Managed()) {
-				return hasher.ComputeHash(Encoding.UTF8.GetBytes(callback.AbsoluteUri));
+				return hasher.ComputeHash(Encoding.UTF8.GetBytes(callback.AbsoluteUri.ToLowerInvariant()));
 			}
 		}
 	}
